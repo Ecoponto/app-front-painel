@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Resgate</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="tela-inicial" class="screen active">
+        <h1 class="titulo-topo">Bem vindo ao Ecoponto!</h1>
+        <button id="btn-iniciar" class="btn-primary">INICIAR</button>
+    </div>
+
+    <div id="tela-processo" class="screen hidden">
+        <div id="acao-container" class="hidden">
+            <h2 class="status-text">Escaneie o QR Code para resgatar sua sessão ou se mantenha como convidado !!</h2>
+            
+            <div id="qrcode-container" style="display: flex; justify-content: center; margin: 20px 0;"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
