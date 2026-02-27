@@ -34,7 +34,7 @@ btnIniciar.addEventListener('click', async () => {
 
     try {
         // 2. Requisição para a Rota X
-        const response = await fetch('http://192.168.1.80:5000/token-session/cycle/start',
+        const response = await fetch('https://ecotank.hirameki.me/sessions/login',
         {   
             method: 'POST',
             headers: {
@@ -45,7 +45,7 @@ btnIniciar.addEventListener('click', async () => {
         const data = await response.json();
 
         // 3. Gera o QR Code com o dado vindo da API (ex: data.id ou data.url)
-        const valorCodigo = data.tokenSession;
+        const valorCodigo = data.token;
 
         new QRCode(qrcodeContainer, {
             text: valorCodigo,
