@@ -9,9 +9,7 @@ const btnIniciar = document.getElementById('btn-iniciar');
 const btnResgatar = document.getElementById('btn-resgatar');
 const btnNaoResgatar = document.getElementById('btn-nao-resgatar');
 
-// Configuração do Tempo (10 segundos no seu original)
-
-const TEMPO_VALIDO_QRCODE = 1800000; // 30 minutos para teste
+const TEMPO_VALIDO_QRCODE = 300000; // 5 minutos para teste
 
 btnIniciar.addEventListener('click', async () => {
     // 1. Troca de tela
@@ -26,21 +24,18 @@ btnIniciar.addEventListener('click', async () => {
 
     try {
         // 2. Requisição para a Rota X
-        // SUBSTITUA A URL ABAIXO PELA SUA ROTA REAL
-        //const response = await fetch('https://ecotank.hirameki.me/sessions/login',
-        //{   
-        //    method: 'POST',
-        //    headers: {
-        //        'Content-Type': 'application/json'
-        //    },
-        //    body: JSON.stringify({})
-        //});
-        //const data = await response.json();
+        const response = await fetch('http://192.168.1.80:5000/token-session/cycle/start',
+        {   
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({})
+        });
+        const data = await response.json();
 
         // 3. Gera o QR Code com o dado vindo da API (ex: data.id ou data.url)
-        const valorCodigo = "d83a5adf9db34295a62568f9288148b5" 
-        // || "Erro: Dados inválidos";
-
+        const valorCodigo = data.tokenSession;
         console.log("Valor para QR Code:", valorCodigo); // Verifique o valor recebido
 
         new QRCode(qrcodeContainer, {
