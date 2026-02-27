@@ -4,12 +4,22 @@ const telaProcesso = document.getElementById('tela-processo');
 const loadingContainer = document.getElementById('loading-container');
 const acaoContainer = document.getElementById('acao-container');
 const qrcodeContainer = document.getElementById('qrcode-container');
+const aplhanumericContainer = document.getElementById('alphanumeric-container');
 
 const btnIniciar = document.getElementById('btn-iniciar');
 const btnResgatar = document.getElementById('btn-resgatar');
 const btnNaoResgatar = document.getElementById('btn-nao-resgatar');
 
 const TEMPO_VALIDO_QRCODE = 300000; // 5 minutos para teste
+
+function createAlphaNumericCod(size) {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code = '';
+  for (let i = 0; i < size; i++) {
+    code += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return code;
+}
 
 btnIniciar.addEventListener('click', async () => {
     // 1. Troca de tela
@@ -36,7 +46,6 @@ btnIniciar.addEventListener('click', async () => {
 
         // 3. Gera o QR Code com o dado vindo da API (ex: data.id ou data.url)
         const valorCodigo = data.tokenSession;
-        console.log("Valor para QR Code:", valorCodigo); // Verifique o valor recebido
 
         new QRCode(qrcodeContainer, {
             text: valorCodigo,
@@ -46,6 +55,9 @@ btnIniciar.addEventListener('click', async () => {
             colorLight: "#ffffff",
             correctLevel: QRCode.CorrectLevel.H
         });
+
+        aplhanumericContainer.textContent = createAlphaNumericCod(4)
+
 
     } catch (error) {
         console.error("Erro na requisição:", error);
